@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+	<h1>Procesador de Texto</h1>
+
+	<script>
+		// Obtenemos los parámetros de la URL
+		const urlParams = new URLSearchParams(window.location.search);
+		const texto = urlParams.get('texto');
+		const accion = urlParams.get('accion');
+
+		// Realizamos la acción correspondiente en el texto
+		let resultado;
+		switch (accion) {
+			case 'dividir':
+				resultado = texto.split(' ');
+				break;
+			case 'extraer':
+				resultado = texto.substring(0, 10);
+				break;
+			case 'eliminar':
+				resultado = texto.replace(/\s+/g, '');
+				break;
+			case 'capitalizar':
+				resultado = texto.charAt(0).toUpperCase() + texto.slice(1);
+				break;
+			case 'min':
+				resultado = texto.toLowerCase();
+				break;
+			case 'may':
+				resultado = texto.toUpperCase();
+				break;
+			case 'contar':
+				resultado = texto.length;
+				break;
+			default:
+				resultado = 'Acción no válida';
+		}
+
+		// Mostramos el resultado en la página
+		document.write('<p>El resultado de la acción "' + accion + '" en el texto "' + texto + '" es:</p>');
+		document.write('<p>' + resultado + '</p>');
+	</script>
+</body>
+</html>
